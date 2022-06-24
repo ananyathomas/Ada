@@ -12,13 +12,16 @@ from bs4 import BeautifulSoup # for parsing google answer boxes
 from datetime import date
 import datetime
 import time 
+from dotenv import load_dotenv
 
+load_dotenv()
 # Weather API
-weather_key= # Add your API key
+weather_key = os.getenv("weather_key")
 base= "http://api.openweathermap.org/data/2.5/forecast?"
 
 # Wolframalpha API
-client = wolframalpha.Client("") # Add your API key between the quotes
+client_key = os.getenv("client_key")
+client = wolframalpha.Client(client_key)
 
 # For scraping google answer boxes
 headers = {
