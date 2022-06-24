@@ -125,7 +125,7 @@ if __name__ == '__main__':
             speak(resp_string)
         else: 
             speak("City Not Found") 
-      elif "news" in query or "news headlines" in query:
+      elif "news" in query or "headlines" in query:
         url = 'https://www.bbc.com/news'
         html = requests.get(url)
         soup = BeautifulSoup(html.text, 'html.parser')
@@ -167,6 +167,9 @@ if __name__ == '__main__':
             if(i==5):
               break
             i+=1
+        elif soup.find('span',class_='qv3Wpe') is not None:
+          answer = soup.find('span', class_='qv3Wpe')
+          speak(answer.text)
         else:
           speak("No results found")
       elif "songs similar to" in query or "song similar to" in query or "movies similar to" in query or "movies like" in query or "shows similar to" in query or "shows like" in query:
