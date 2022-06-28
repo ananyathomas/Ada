@@ -19,6 +19,13 @@ Ada is a voice bot written in Python that can recognize human speech and execute
 - [OpenWeatherMap](https://openweathermap.org/appid)
 - [WolframAlpha](https://developer.wolframalpha.com/portal/myapps/)
 
+# Installations
+-  pip install SpeechRecognition
+-  pip install playsound
+-  pip install pyjokes
+-  pip install requests
+-  pip install beautifulsoup4
+
 # Modules used
 -  SpeechRecognition
 -  playsound
