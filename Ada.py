@@ -173,6 +173,8 @@ if __name__ == '__main__':
         elif soup.find('span',class_='qv3Wpe') is not None:
           answer = soup.find('span', class_='qv3Wpe')
           speak(answer.text)
+        if answer!=None or snippet!=None:
+          continue
         else:
           speak("No results found")
       elif "songs similar to" in query or "song similar to" in query or "movies similar to" in query or "movies like" in query or "shows similar to" in query or "shows like" in query:
