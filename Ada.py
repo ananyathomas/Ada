@@ -99,9 +99,6 @@ if __name__ == '__main__':
         os.startfile('C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\\Microsoft Office Excel 2007.lnk')
       elif "open powerpoint" in query:
         os.startfile('C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\\Microsoft Office PowerPoint 2007.lnk')
-      elif "open command promt" in query or "open cmd" in query:
-        speak("Opening Command Prompt\n")
-        os.startfile('C:\Users\Canara Bank\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt')
       elif "who made you" in query or "who is your creator" in query or "who created you" in query:
         speak("I was made by Ananya Thomas")
       elif "tell me a joke" in query:
