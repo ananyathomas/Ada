@@ -46,7 +46,8 @@ def command():
   r = sr.Recognizer()
   with sr.Microphone() as source:
     print("Listening...")
-    #query = input() #(if you want to take written input)
+    #query = input() 
+    #(if you want to take written input)
     query = r.listen(source, phrase_time_limit = 20)
   try:
     print("Recognizing...")   
@@ -77,13 +78,13 @@ if __name__ == '__main__':
         speak("Ok bye hope I helped")
         break
       if "calculate" in query or "who wrote" in query or "where is" in query:
-            res = client.query(query)             
-            try:
-                print (next(res.results).text)
-                speak (next(res.results).text)
-            except StopIteration:
-                print ("No results found")
-                speak("No results found")
+        res = client.query(query)             
+        try:
+          print (next(res.results).text)
+          speak (next(res.results).text)
+        except StopIteration:
+          print ("No results found")
+          speak("No results found")
       elif "open youtube" in query:
         speak("Opening Youtube\n")
         webbrowser.open("https://youtube.com")
@@ -98,6 +99,9 @@ if __name__ == '__main__':
         os.startfile('C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\\Microsoft Office Excel 2007.lnk')
       elif "open powerpoint" in query:
         os.startfile('C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Microsoft Office\\Microsoft Office PowerPoint 2007.lnk')
+      elif "open command promt" in query or "open cmd" in query:
+        speak("Opening Command Prompt\n")
+        os.startfile('C:\Users\Canara Bank\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\System Tools\Command Prompt')
       elif "who made you" in query or "who is your creator" in query or "who created you" in query:
         speak("I was made by Ananya Thomas")
       elif "tell me a joke" in query:
@@ -119,12 +123,11 @@ if __name__ == '__main__':
         url = base + "appid=" + weather_key + "&q=" + location 
         response = requests.get(url) 
         res = json.loads(response.text)
-        print(res)
         if res["cod"] != "404": 
             weather = res['list'][0]['main']
             temp = round(weather['temp'] - 273.15)
             desc = res['list'][0]['weather'][0]['description']
-            resp_string = "The temperature is " + str(temp) + " degree Celcius" + "\nPrediction for today is" + str(desc)
+            resp_string = "The temperature is " + str(temp) + " degree Celcius" + "\nPrediction for today is " + str(desc)
             speak(resp_string)
         else: 
             speak("City Not Found") 
@@ -149,7 +152,7 @@ if __name__ == '__main__':
           speak(result.text)
         else:
           speak("No results found")
-      elif "what is" in query or 'what are' in query or "who is" in query:
+      elif "what is" in query or 'what are' in query or "who" in query:
         url = 'https://www.google.com/search?q='+query
         html = requests.get(url, headers=headers,params=params)
         soup = BeautifulSoup(html.text, 'html.parser')
@@ -165,14 +168,18 @@ if __name__ == '__main__':
         elif soup.find('div', class_='dAassd') is not None:
           i = 1
           for word in soup.find_all('div', class_='dAassd'):
-            a=word.get_text()
-            speak(a)
+            answer=word.get_text()
+            speak(answer)
             if(i==5):
               break
             i+=1
-        elif soup.find('span',class_='qv3Wpe') is not None:
-          answer = soup.find('span', class_='qv3Wpe')
+        elif soup.find('div',class_='z7BZJb XSNERd') is not None:
+          answer = soup.find('span', class_='z7BZJb XSNERd')
           speak(answer.text)
+        else:
+          answer = 'https://www.google.com/search?q=' + query
+          speak('Here is what I found')
+          webbrowser.open(answer)
         if answer!=None or snippet!=None:
           continue
         else:
@@ -201,7 +208,7 @@ if __name__ == '__main__':
           speak("No results found")
       elif "play the song" in query or "play" in query or "search youtube for" in query or "search on youtube" in query:
         songtosearch = ""
-        if "play the song" in query or "search youtube for" or "search on youtube":
+        if "play the song" in query or "search youtube for" in query or "search on youtube" in query:
           query = query.split(" ")
           for i in query[3:]:
             songtosearch = songtosearch + str(i) +" "
